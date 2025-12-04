@@ -139,20 +139,17 @@ document.addEventListener('DOMContentLoaded', function() {
         techsObserver.observe(techsSection);
     }
 
-    // Manejo del formulario de contacto
+    // Manejo del formulario de contacto (placeholder, por si luego agregas uno real)
     const contactForm = document.querySelector('#contacto form');
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Obtener los valores del formulario
-            const formData = new FormData(this);
             const name = this.querySelector('input[type="text"]').value;
             const email = this.querySelector('input[type="email"]').value;
             const message = this.querySelector('textarea').value;
             
-            // Validación básica
             if (!name || !email || !message) {
                 showNotification('Por favor, completa todos los campos', 'error');
                 return;
@@ -163,14 +160,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Simular envío del formulario
             const submitBtn = this.querySelector('.btn-submit');
             const originalText = submitBtn.textContent;
             
             submitBtn.textContent = 'Enviando...';
             submitBtn.disabled = true;
             
-            // Simular delay de envío
             setTimeout(() => {
                 showNotification('¡Mensaje enviado con éxito! Te contactaré pronto.', 'success');
                 this.reset();
@@ -180,20 +175,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Función para validar email
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
 
-    // Función para mostrar notificaciones
     function showNotification(message, type) {
-        // Crear elemento de notificación
         const notification = document.createElement('div');
         notification.className = `notification ${type}`;
         notification.textContent = message;
         
-        // Estilos de la notificación
         notification.style.cssText = `
             position: fixed;
             top: 20px;
@@ -208,22 +199,18 @@ document.addEventListener('DOMContentLoaded', function() {
             max-width: 300px;
         `;
         
-        // Colores según el tipo
         if (type === 'success') {
-            notification.style.background = '#75a59b';
+            notification.style.background = '#ff6b3d';
         } else {
             notification.style.background = '#e74c3c';
         }
         
-        // Agregar al DOM
         document.body.appendChild(notification);
         
-        // Mostrar notificación
         setTimeout(() => {
             notification.style.transform = 'translateX(0)';
         }, 100);
         
-        // Ocultar después de 5 segundos
         setTimeout(() => {
             notification.style.transform = 'translateX(100%)';
             setTimeout(() => {
@@ -247,7 +234,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
         
-        // Iniciar efecto después de que la página cargue
         setTimeout(typeWriter, 500);
     }
 
@@ -282,7 +268,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Efecto hover mejorado para las tarjetas de proyectos
-    projectCards.forEach(card => {
+    const projectCardsHover = document.querySelectorAll('.project-card');
+    projectCardsHover.forEach(card => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-15px) scale(1.02)';
         });
@@ -316,12 +303,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Agregar estilos CSS adicionales para las animaciones
+// Estilos adicionales para el menú activo y tarjetas
 const additionalStyles = `
     .nav-menu a.active {
-        color: #75a59b !important;
-        background: rgba(117, 165, 155, 0.2) !important;
-        text-shadow: 0 0 4px #75a59b !important;
+        color: #ff6b3d !important;
+        background: rgba(255, 107, 61, 0.2) !important;
+        text-shadow: 0 0 4px rgba(255, 107, 61, 0.8) !important;
     }
     
     .project-card {
@@ -329,10 +316,11 @@ const additionalStyles = `
     }
     
     .project-card:hover {
-        box-shadow: 0 15px 30px rgba(0,0,0,0.2) !important;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.25) !important;
     }
 `;
 
 const styleSheet = document.createElement('style');
 styleSheet.textContent = additionalStyles;
 document.head.appendChild(styleSheet);
+
