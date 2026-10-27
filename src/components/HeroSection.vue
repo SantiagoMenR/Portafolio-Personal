@@ -56,7 +56,7 @@ const statBoxes = ref([]);
 const imageWrapper = ref(null);
 
 const stats = [
-  { number: '1+', label: 'Años de Experiencia' },
+  { number: '2+', label: 'Años de Experiencia' },
   { number: '10+', label: 'Proyectos Completados' },
   { number: '11+', label: 'Tecnologías Dominadas' }
 ];

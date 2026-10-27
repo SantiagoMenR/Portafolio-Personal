@@ -42,9 +42,9 @@ const education = [
   },
   {
     year: '2025',
-    title: 'Curso Django',
+    title: 'Curso Vue.JS',
     institution: 'Platzi',
-    description: 'Fundamentos y Aplicación de las tecnologías de backend.'
+    description: 'Fundamentos y Aplicación de las tecnologías de frontend.'
   }
 ];
 
